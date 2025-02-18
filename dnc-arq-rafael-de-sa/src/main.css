@@ -38,6 +38,10 @@ a {
   color: #f6f6f6;
 }
 
+.gray-1-color {
+  color: #4d5053;
+}
+
 /* Grid */
 .container {
   margin: 0 auto;
