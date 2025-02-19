@@ -13,7 +13,7 @@ a {
   text-decoration: none;
 }
 
-/* Main Color */
+/* MAIN COLOR */
 .primary-background {
   background-color: #0c70f2;
 }
@@ -42,7 +42,30 @@ a {
   color: #4d5053;
 }
 
-/* Grid */
+/* TYPOGRAFY*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 2.5px;
+}
+
+p {
+  line-height: 150%;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+/* GRID */
 .container {
   margin: 0 auto;
   width: 100%;
