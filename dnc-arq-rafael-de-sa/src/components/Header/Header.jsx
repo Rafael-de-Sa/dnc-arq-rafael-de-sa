@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-//Assets
+//ASSETS
 import "./Header.css";
 import Logo from "../../assets/dnc-logo.svg";
 

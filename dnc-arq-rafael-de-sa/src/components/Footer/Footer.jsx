@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-//Assets
+//ASSETS
 import "./Footer.css";
 import Logo from "../../assets/dnc-logo.svg";
 import BrazilIcon from "../../assets/brazil-icon.svg";
