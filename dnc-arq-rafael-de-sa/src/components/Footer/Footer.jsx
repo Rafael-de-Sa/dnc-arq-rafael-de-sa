@@ -14,14 +14,14 @@ function Footer() {
   return (
     <footer>
       <div className="container">
-        <div className="d-flex jc-space-between">
+        <div className="d-flex jc-space-between mobile-fd-column">
           <div className="footer-logo-col">
             <img src={Logo} className="footer-logo" />
             <p className="gray-1-color">
               A escola que prepara você para as profissões em alta no mercado de
               trabalho.
             </p>
-            <div className="d-flex social-links">
+            <div className="d-flex social-links ">
               <a href="https://google.com" target="_blank">
                 <img src={FacebookIcon} alt="" />
               </a>
@@ -36,7 +36,7 @@ function Footer() {
               </a>
             </div>
           </div>
-          <div className="d-flex">
+          <div className="d-flex mobile-fd-column">
             <div className="footer-col">
               <h3>Pages</h3>
               <ul>
