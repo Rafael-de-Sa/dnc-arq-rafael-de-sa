@@ -1,8 +1,18 @@
+import Header from "../components/Header/Header";
+import Banner from "../components/Banner/Banner";
+import Footer from "../components/Footer/Footer";
+import AboutText from "../components/AboutText/AboutText";
+
 function About() {
   return (
     <>
-      <h1>About</h1>
-      <p>Subtitle about</p>
+      <Header />
+      <Banner title="About" image="about.jpg" />
+      <div className="container">
+        <AboutText />
+      </div>
+      {/*TODO: 7:00*/}
+      <Footer />
     </>
   );
 }
