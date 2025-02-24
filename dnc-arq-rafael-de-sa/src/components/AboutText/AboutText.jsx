@@ -13,7 +13,6 @@ function AboutText(props) {
             the of readable content of a page
           </p>
           <p>
-            {" "}
             when lookings at its layouts the points spriof using that it has a
             more less normal.A wonderful serenity has taken pgossession of my
             entire soul, like thesce sweet morndsings of sphring which I enjoy
