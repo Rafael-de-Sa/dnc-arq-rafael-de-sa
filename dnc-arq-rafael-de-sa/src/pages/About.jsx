@@ -11,7 +11,6 @@ function About() {
       <div className="container">
         <AboutText />
       </div>
-      {/*TODO: 7:00*/}
       <Footer />
     </>
   );
