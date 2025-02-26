@@ -40,11 +40,12 @@ nav a:hover {
     border-left: 10px solid #333;
     display: none;
     flex-direction: column;
+    height: 100%;
     padding: 37px;
     position: fixed;
     right: 0;
     top: 0;
-    width: 40vh;
+    width: 40vw;
     z-index: 1;
     box-shadow: -50vw 0px 0px 0px rgba(0, 0, 0, 0.75);
   }
@@ -80,5 +81,6 @@ nav a:hover {
     margin: 0 0 12px;
     padding: 12px;
     width: fit-content;
+    cursor: pointer;
   }
 }
