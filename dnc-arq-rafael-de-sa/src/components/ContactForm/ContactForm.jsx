@@ -10,11 +10,36 @@ function ContactForm() {
   });
 
   const [isFormValid, setIsFormValid] = useState(false);
+  const [formSubmitLoading, setFormSubmitLoading] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isFormValid) {
-      null;
+      setFormSubmitLoading(true);
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
+            ...formData,
+            access_key: "467d6bde-63b6-4379-a692-15c504180280",
+          }),
+        });
+
+        if (response.ok) {
+          setFormSubmitted(true);
+        } else {
+          alert("Erro ao enviar!");
+        }
+      } catch (e) {
+        alert("Erro: ", e);
+      } finally {
+        setFormSubmitLoading(false);
+      }
     }
   };
 
@@ -28,7 +53,7 @@ function ContactForm() {
       formData.name.trim() &&
       formData.email.trim() &&
       isValidEmail(formData.email) &&
-      formData.message.trim()
+      formData.message.trim();
     setIsFormValid(isValid);
   }, [formData]);
 
@@ -43,7 +68,7 @@ function ContactForm() {
   return (
     <div className="contact-form d-flex fd-column al-center">
       <h2>We love meeting new people and helping them.</h2>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className="d-flex form-group">
           <input
             type="text"
@@ -72,7 +97,11 @@ function ContactForm() {
             rows={4}></textarea>
         </div>
         <div className="al-center d-flex jc-end form-group">
-          <Button buttonStyle="secondary" type="submit" disabled={!isFormValid}>
+          {formSubmitted && <p className="text-primary">Sucesso!</p>}
+          <Button
+            buttonStyle="secondary"
+            type="submit"
+            disabled={!isFormValid || formSubmitLoading}>
             Send Now
           </Button>
         </div>
