@@ -17,6 +17,7 @@ function App() {
 
   if (appContext.loading) {
     return <LoadingSpinner />;
+    {/*TODO: 5:00*/}
   }
 
   return (

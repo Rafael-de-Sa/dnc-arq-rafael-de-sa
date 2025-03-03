@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./ContactForm.css";
 import Button from "../Button/Button";
 
+//CONTEXTS
+import { AppContext } from "../../contexts/AppContext";
 function ContactForm() {
+  const appContext = useContext(AppContext);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,10 +36,13 @@ function ContactForm() {
         if (response.ok) {
           setFormSubmitted(true);
         } else {
-          alert("Erro ao enviar!");
+          alert(appContext.languages[appContext.language].general.error);
         }
       } catch (e) {
-        alert("Erro: ", e);
+        alert(
+          "Erro: ",
+          appContext.languages[appContext.language].general.error
+        );
       } finally {
         setFormSubmitLoading(false);
       }
@@ -67,7 +73,7 @@ function ContactForm() {
 
   return (
     <div className="contact-form d-flex fd-column al-center">
-      <h2>We love meeting new people and helping them.</h2>
+      <h2>{appContext.languages[appContext.language].contact.title}</h2>
       <form onSubmit={handleSubmit}>
         <div className="d-flex form-group">
           <input
@@ -75,7 +81,7 @@ function ContactForm() {
             className="form-input"
             id="name"
             name="name"
-            placeholder="Name *"
+            placeholder={appContext.languages[appContext.language].contact.pl1}
             onChange={handleChange}
           />
           <input
@@ -83,7 +89,7 @@ function ContactForm() {
             className="form-input"
             id="email"
             name="email"
-            placeholder="Email *"
+            placeholder={appContext.languages[appContext.language].contact.pl2}
             onChange={handleChange}
           />
         </div>
@@ -92,17 +98,21 @@ function ContactForm() {
             className="form-input"
             name="message"
             id="message"
-            placeholder="Mensagem *"
+            placeholder={appContext.languages[appContext.language].contact.pl3}
             onChange={handleChange}
             rows={4}></textarea>
         </div>
         <div className="al-center d-flex jc-end form-group">
-          {formSubmitted && <p className="text-primary">Sucesso!</p>}
+          {formSubmitted && (
+            <p className="text-primary">
+              {appContext.languages[appContext.language].contact.successMsg}
+            </p>
+          )}
           <Button
             buttonStyle="secondary"
             type="submit"
             disabled={!isFormValid || formSubmitLoading}>
-            Send Now
+            {appContext.languages[appContext.language].general.send}
           </Button>
         </div>
       </form>
