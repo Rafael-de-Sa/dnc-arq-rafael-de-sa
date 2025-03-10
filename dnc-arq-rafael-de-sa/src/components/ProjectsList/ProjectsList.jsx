@@ -3,7 +3,10 @@ import "./ProjectsList.css";
 
 //ASSETS
 import LikedFilled from "../../assets/like-filled.svg";
-import Like from "../../assets/like.svg";
+import LikedOutLine from "../../assets/like.svg";
+
+//COMPONENTS
+import Button from "../Button/Button";
 
 //UTILS
 import { getApiData } from "../../services/apiServices";
@@ -13,7 +16,25 @@ import { AppContext } from "../../contexts/AppContext";
 
 function ProjectsList() {
   const appContext = useContext(AppContext);
+  const [favProjects, setFavProject] = useState([]);
   const [projects, setProjects] = useState();
+  const handleSavedProjects = (id) => {
+    setFavProject((prevFavProjects) => {
+      if (prevFavProjects.includes(id)) {
+        const filterArray = prevFavProjects.filter(
+          (projectId) => projectId !== id
+        );
+        sessionStorage.setItem("favProjects", JSON.stringify(filterArray));
+        return prevFavProjects.filter((projectId) => projectId !== id);
+      } else {
+        sessionStorage.setItem(
+          "favProjects",
+          JSON.stringify([...prevFavProjects, id])
+        );
+        return [...prevFavProjects, id];
+      }
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +48,14 @@ function ProjectsList() {
 
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const savedFavProjects = JSON.parse(sessionStorage.getItem("favProjects"));
+    if (savedFavProjects) {
+      setFavProject(savedFavProjects);
+    }
+  }, []);
+
   return (
     <div className="projects-section">
       <div className="projects-hero">
@@ -44,7 +73,18 @@ function ProjectsList() {
                   style={{ backgroundImage: `url(${project.thumb})` }}></div>
                 <h3>{project.title}</h3>
                 <p>{project.subtitle}</p>
-                <img src={LikedFilled} height="20px" />
+                <Button
+                  buttonStyle="unstyled"
+                  onClick={() => handleSavedProjects(project.id)}>
+                  <img
+                    src={
+                      favProjects.includes(project.id)
+                        ? LikedFilled
+                        : LikedOutLine
+                    }
+                    height="20px"
+                  />
+                </Button>
               </div>
             ))
           : null}
