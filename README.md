@@ -13,4 +13,4 @@
 
 ## Preview
 [Link para acesso](https://learning-react-ecru-seven.vercel.app/) <br>
-![Site Preview](./src/assets/imagem/site-preview.png)
+![Site Preview](./src/assets/site-preview.png)
